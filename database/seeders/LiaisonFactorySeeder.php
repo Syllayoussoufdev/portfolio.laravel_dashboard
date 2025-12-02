@@ -15,16 +15,22 @@ class LiaisonFactorySeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. DÉSACTIVER la vérification des clés étrangères
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         // Vider les tables pour un seeder propre
-        DB::table('diplome')->truncate(); 
-        DB::table('competence')->truncate();
+        DB::table('diplomes')->truncate(); 
+        DB::table('competences')->truncate();
         DB::table('diplome_competence')->truncate();
 
-        competence::factory(20)->create(); // Ajout de 10 compétences
+        // 3. RÉACTIVER la vérification des clés étrangères
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        competence::factory()->count(20)->create(); // Ajout de 10 compétences
 
         // 2. Récupérer tous les IDs de Compétences (pour la liaison)
         // La méthode pluck('id') est très efficace pour récupérer une seule colonne
-        $idsCompetences = cometence::all()->pluck('id')->toArray();// Récupère tous les IDs de compétences sous forme de tableau
+        $idsCompetences = competence::all()->pluck('id')->toArray();// Récupère tous les IDs de compétences sous forme de tableau
         
         // 3. Créer 40 Diplômes et les lier aux Compétences avec un niveau de maîtrise aléatoire
         //each permet de parcourir chaque diplôme créé et use pour la liaison des variables externes

@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('niveau_maitrise')->nullable();
 
-            $table->foreignId('diplome_id')
+            $table->foreignId('diplome_id')// Assure la contrainte de clé étrangère
                 ->constrained('diplomes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->foreignId('competence_id')
-                ->constrained('competences')
+                ->constrained('competences') // Assure la contrainte de clé étrangère
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

@@ -21,9 +21,13 @@ class DiplomeFactory extends Factory
     {
         return [
             // Simuler des noms de diplômes aléatoires
-            'name' => $this->faker->unique()->sentence(3, true) . ' (' . $this->faker->randomElement(['Licence', 'Master', 'BTS']) . ')',
+            'Titre' => $this->faker->unique()->sentence(3, true) . ' (' . $this->faker->randomElement(['Licence', 'Master', 'BTS']) . ')',
             // Année aléatoire entre 2010 et 2023
-            'annee' => $this->faker->numberBetween(2010, 2023),
+            'Annee_obtention' => $this->faker->numberBetween(2010, 2023),
+            // Centre formateur aléatoire
+            'Centre_formateur' => $this->faker->company(),
+            
+
         ];
     }
 }
