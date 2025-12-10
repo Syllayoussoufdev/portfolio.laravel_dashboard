@@ -13,12 +13,16 @@
                             <form method="POST" action="{{ route('diplomes.store') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Diploma / Certification Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="Titre" class="form-label">Diploma / Certification Titre</label>
+                                    <input type="text" class="form-control" id="Titre" name="Titre" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                                    <label for="Annee_obtention" class="form-label">Annee_obtention</label>
+                                    <input type="number" class="form-control" id="Annee_obtention" name="Annee_obtention" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Centre_formateur" class="form-label">Centre_formateur</label>
+                                    <input type="text" class="form-control" id="Centre_formateur" name="Centre_formateur" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add Diploma / Certification</button>
                             </form>

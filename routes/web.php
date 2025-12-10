@@ -46,5 +46,5 @@ Route::get('/competences/{id}/edit', [App\Http\Controllers\CompetenceController:
 Route::put('/competences/{id}', [App\Http\Controllers\CompetenceController::class, 'update'])->name('competences.update');
 Route::delete('/competences/{id}', [App\Http\Controllers\CompetenceController::class, 'destroy'])->name('competences.destroy'); 
 // Vous pouvez ajouter des routes pour les autres entités de manière similaire
-Route::get('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignDiplomesForm'])->name('competences.assignDiplomesForm');
-Route::post('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignDiplomes'])->name('competences.assignDiplomes');
+Route::get('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignToDiplomeForm'])->name('competences.assignDiplomesForm');
+Route::post('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignToDiplome'])->name('competences.assignDiplomes');

@@ -55,7 +55,7 @@ class DiplomeController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+    {        
         $request->validate([
             'Titre' => 'required|string|max:255',
             'Centre_formateur' => 'required|string|max:255',

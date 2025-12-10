@@ -10,6 +10,7 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            <a href="{{ route('diplomes.create') }}" class="btn btn-primary">creer</a>                           
                             <!-- Diploma Card 1-->
                             @foreach ($diplomes as $diplome)
                             <div class="card mb-4">

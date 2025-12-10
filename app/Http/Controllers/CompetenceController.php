@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Competence;
+use App\Models\Diplome;
 use Illuminate\Http\Response;
 
 class CompetenceController extends Controller
@@ -19,7 +20,8 @@ class CompetenceController extends Controller
     }
     public function create()
     {
-        return view('competences.create');
+        $diplomes = Diplome::all();
+        return view('competences.create', compact('diplomes'));
     }
 
     /**
@@ -31,9 +33,11 @@ class CompetenceController extends Controller
             'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
             'pourcentage' => 'required|integer|min:0|max:100',
+            'diplome_ids' => 'array',
+            'diplome_ids.*' => 'exists:diplomes,id',
         ]);
         Competence::create($request->all());
-        return redirect()->route('competences.index')
+        return redirect()->route('competence')
             ->with('success', 'Compétence créée avec succès.');
         // return response()->json(['message' => 'Compétence créée avec succès.'], 201); retourner pour API
     }
@@ -61,10 +65,12 @@ class CompetenceController extends Controller
             'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
             'pourcentage' => 'required|integer|min:0|max:100',
+            'diplome_ids' => 'array',
+            'diplome_ids.*' => 'exists:diplomes,id',
         ]);
         $competence= Competence::findOrFail($id);
         $competence->update($request->all());
-        return redirect()->route('competences.index')
+        return redirect()->route('competence')
             ->with('success', 'Compétence mise à jour avec succès.');
         // return response()->json(['message' => 'Compétence mise à jour avec succès.'], 200); utiliser pour API
     }
@@ -76,21 +82,25 @@ class CompetenceController extends Controller
     {
         $competence = Competence::findOrFail($id);
         $competence->delete();
-        return redirect()->route('competences.index')
+        return redirect()->route('competence')
             ->with('success', 'Compétence supprimée avec succès.');
         // return response()->json(['message' => 'Compétence supprimée avec succès.'], 200); utiliser pour API
     }
-    public function assignToDiplome(Request $request, $competenceId)
+    public function assignToDiplome(Request $request, $id)
     {
-        $competence = Competence::findOrFail($competenceId);
+        $request->validate([
+            'diplome_ids' => 'required|array',
+            'diplome_ids.*' => 'exists:diplomes,id',
+        ]);
+        $competence = Competence::findOrFail($id);
         $diplomeIds = $request->input('diplome_ids', []);
         $competence->diplome()->sync($diplomeIds);
-        return redirect()->route('competences.index')
+        return redirect()->route('competence')
             ->with('success', 'Compétence assignée aux diplômes avec succès.');
     }
-    public function assignToDiplomeForm($competenceId)
+    public function assignToDiplomeForm($id)
     {
-        $competence = Competence::findOrFail($competenceId);
+        $competence = Competence::findOrFail($id);
         $diplomes = Diplome::all();
         return view('competences.assign_diplomes', compact('competence', 'diplomes'));
     }
