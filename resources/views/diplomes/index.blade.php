@@ -18,6 +18,15 @@
                                     <h5 class="card-title">{{ $diplome->Titre }}</h5>
                                     <p class="card-text">{{ $diplome->Annee_obtention }}</p>
                                     <p>{{ $diplome->Centre_formateur }}</p>
+                                    <p>
+                                        Compétences associées :
+                                        @forelse ($diplome->competence as $competence) 
+                                        <span class="badge bg-secondary">{{ $competence->nom }}</span>
+                                        @empty
+                                            <span class="text-danger">Aucune compétence associée.</span>
+                                        @endforelse
+                                    </p>                                    
+                                    <br>
                                     <a href="{{ route('diplomes.edit', $diplome->id) }}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('diplomes.destroy', $diplome->id) }}" method="POST" class="d-inline">
                                         @csrf
@@ -33,3 +42,4 @@
             </section>
             @endsection
         </main>
+@endextends

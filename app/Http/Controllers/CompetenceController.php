@@ -14,7 +14,8 @@ class CompetenceController extends Controller
      */
     public function index()
     {
-        $competences = Competence::all();
+        //$competences = Competence::all();
+        $competences= Competence::with('diplome')->get();
         return view('competences.index', compact('competences'));
         // return response()->json($competences); utiliser pour API
     }
@@ -29,14 +30,19 @@ class CompetenceController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
             'pourcentage' => 'required|integer|min:0|max:100',
-            'diplome_ids' => 'array',
-            'diplome_ids.*' => 'exists:diplomes,id',
+            'diplome_id' => 'nullable|array',
+            'diplome_id.*' => 'exists:diplomes,id',
         ]);
-        Competence::create($request->all());
+        $competence = Competence::create($validated);
+        if ($request->has('diplome_id')) {
+            // La méthode attach() insère les entrées dans la table pivot (diplome_competence)
+            $competence->diplome()->attach($validated['diplome_id']);
+        }
+
         return redirect()->route('competence')
             ->with('success', 'Compétence créée avec succès.');
         // return response()->json(['message' => 'Compétence créée avec succès.'], 201); retourner pour API
@@ -53,7 +59,8 @@ class CompetenceController extends Controller
     public function edit(string $id)
     {
         $competence = Competence::findOrFail($id);
-        return view('competences.edit', compact('competence'));
+        $diplomes = Diplome::all();
+        return view('competences.edit', compact('competence', 'diplomes'));
     }
 
     /**
@@ -65,11 +72,18 @@ class CompetenceController extends Controller
             'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
             'pourcentage' => 'required|integer|min:0|max:100',
-            'diplome_ids' => 'array',
-            'diplome_ids.*' => 'exists:diplomes,id',
+            'diplome_id' => 'nullable|array',
+            'diplome_id.*' => 'exists:diplomes,id',
         ]);
         $competence= Competence::findOrFail($id);
         $competence->update($request->all());
+        If ($request->has('diplome_id')) {
+            // La méthode sync() met à jour les entrées dans la table pivot (diplome_competence)
+            $competence->diplome()->sync($request->input('diplome_id'));
+        } else {
+            // Si aucun diplôme n'est sélectionné, détacher tous les diplômes associés
+            $competence->diplome()->detach();
+        }
         return redirect()->route('competence')
             ->with('success', 'Compétence mise à jour avec succès.');
         // return response()->json(['message' => 'Compétence mise à jour avec succès.'], 200); utiliser pour API

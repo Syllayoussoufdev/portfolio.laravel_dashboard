@@ -19,7 +19,11 @@
                                             <h2 class="fw-bolder">{{ $competence->nom }}</h2>
                                             <p>Niveau : {{ $competence->niveau }}.</p>
                                             <p>pourcentage : {{ $competence->pourcentage }}</p>
-                                            <p>Diplome : {{ $competence->diplome }}</p>
+                                            @forelse ($competence->diplome as $diplome) 
+                                                <span class="badge bg-primary">{{ $diplome->Titre }} ({{ $diplome->Annee_obtention }})</span>
+                                            @empty
+                                                <span class="text-danger">Aucun diplôme associé.</span>
+                                            @endforelse
                                             <a href="{{ route('competences.assignDiplomesForm', $competence->id)}}" class="btn btn-secondary">Assignement de Diplome</a>
                                             <a href="{{ route('competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('competences.destroy', $competence->id) }}" method="POST" class="d-inline">

@@ -24,14 +24,27 @@
                                     <label for="pourcentage" class="form-label">Pourcentage</label>
                                     <input type="number" class="form-control" id="pourcentage" name="pourcentage" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="diplome_ids" class="form-label">Select Diplomas / Certifications</label>
-                                    <select multiple class="form-control" id="diplome_ids" name="diplome_ids[]">
-                                        @foreach($diplomes as $diplome)
-                                            <option value="{{ $diplome->id }}">
-                                                {{ $diplome->Titre }} ({{ $diplome->Annee_obtention }}) - {{ $diplome->Centre_formateur }}
-                                            </option>
-                                        @endforeach                                    
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">Associer aux Diplômes</label>
+                                    <div class="border p-3 rounded">
+                                        @foreach ($diplomes as $diplome)
+                                            <div class="form-check">
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="checkbox" 
+                                                    name="diplome_id[]" 
+                                                    value="{{ $diplome->id }}" 
+                                                    id="diplome-{{ $diplome->id }}"
+                                                    {{-- Maintenir l'état coché en cas d'erreur de validation --}}
+                                                    {{ in_array($diplome->id, old('diplome_id', [])) ? 'checked' : '' }}
+                                                >
+                                                <label class="form-check-label" for="diplome-{{ $diplome->id }}">
+                                                    {{ $diplome->Titre }} ({{ $diplome->Annee_obtention }})
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        @error('diplome_id') <div class="text-danger mt-2">{{ $message }}</div> @enderror
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add Competence</button>
                             </form>

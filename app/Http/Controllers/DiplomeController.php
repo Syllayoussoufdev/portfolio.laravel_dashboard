@@ -14,13 +14,14 @@ class DiplomeController extends Controller
      */
     public function index()
     {
-        $diplomes = Diplome::all();
+        $diplomes = Diplome::with('competence')->get();
         return view('diplomes.index', compact('diplomes'));//-- IGNORE ---
         //return response()->json($diplomes); utiliser pour API --- IGNORE ---
     }
     public function create()
     {
-        return view('diplomes.create');
+        $competences = Competence::all();
+        return view('diplomes.create', compact('competences'));
     }
 
     /**
@@ -33,9 +34,14 @@ class DiplomeController extends Controller
             'Titre' => 'required|string|max:255',
             'Centre_formateur' => 'required|string|max:255',
             'Annee_obtention' => 'required|digits:4|integer|min:1900|max:' . (date('Y')),
+            'competence_id' => 'nullable|array',
+            'competence_id.*' => 'exists:competences,id',
             
         ]);
         Diplome::create($request->all());
+        if ($request->has('competence_id')) {
+            $diplome->competence()->attach($request->input('competence_id'));
+        }
         return redirect()->route('diplomes.index')
             ->with('success', 'Diplôme créé avec succès.');
         // return response()->json(['message' => 'Diplôme créé avec succès.'], 201); retourner pour API
