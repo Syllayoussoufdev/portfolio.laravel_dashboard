@@ -1,6 +1,7 @@
 @extends('layouts.app')
+@section('title', 'Competences')
+    @section('content')
       <main class="flex-shrink-0">
-        @section('content')
             <!-- Competences Section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -42,4 +43,4 @@
                 </div>
             </section>
         </main>
-        @endsection
+    @endsection

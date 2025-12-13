@@ -33,9 +33,6 @@ Route::delete('/diplomes/{id}', [App\Http\Controllers\DiplomeController::class, 
 Route::resource('/diplomes', App\Http\Controllers\DiplomeController::class);// Utilisation de resource pour générer toutes les routes CRUD automatiquement
 Route::resource('/projets', Appdestroy\Http\Controllers\ProjetController::class);
 */
-// Vous pouvez ajouter des routes pour les compétences de manière similaire
-Route::get('/diplomes/asign-competences/{id}', [App\Http\Controllers\DiplomeController::class, 'assignCompetencesForm'])->name('diplomes.assignCompetencesForm');
-Route::post('/diplomes/asign-competences/{id}', [App\Http\Controllers\DiplomeController::class, 'assignCompetences'])->name('diplomes.assignCompetences');
 
 // Routes pour les compétences
 Route::get('/competences', [App\Http\Controllers\CompetenceController::class, 'index'])->name('competence');
@@ -45,6 +42,3 @@ Route::get('/competences/{id}', [App\Http\Controllers\CompetenceController::clas
 Route::get('/competences/{id}/edit', [App\Http\Controllers\CompetenceController::class, 'edit'])->name('competences.edit');
 Route::put('/competences/{id}', [App\Http\Controllers\CompetenceController::class, 'update'])->name('competences.update');
 Route::delete('/competences/{id}', [App\Http\Controllers\CompetenceController::class, 'destroy'])->name('competences.destroy'); 
-// Vous pouvez ajouter des routes pour les autres entités de manière similaire
-Route::get('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignToDiplomeForm'])->name('competences.assignDiplomesForm');
-Route::post('/competences/asign-diplomes/{id}', [App\Http\Controllers\CompetenceController::class, 'assignToDiplome'])->name('competences.assignDiplomes');

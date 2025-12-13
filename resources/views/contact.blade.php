@@ -1,6 +1,7 @@
 @extends('layouts.app')
-      <main class="flex-shrink-0">
+@section('title', 'Contact')
 @section('content')
+        <main class="flex-shrink-0">
             <!-- Page content-->
             <section class="py-5">
                 <div class="container px-5">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
-      <main class="flex-shrink-0">
-        @section('content')
+@section('title', 'Add Diploma / Certification')
+@section('content')
+        <main class="flex-shrink-0">
             <!-- Diplomes Section-->
             
             <section class="py-5">
@@ -51,5 +52,6 @@
                         </div>
                     </div>
                 </div>
-
-        @endsection
+            </section>            
+        </main>        
+@endsection

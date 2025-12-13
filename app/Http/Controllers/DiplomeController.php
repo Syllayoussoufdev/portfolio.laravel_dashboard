@@ -38,7 +38,7 @@ class DiplomeController extends Controller
             'competence_id.*' => 'exists:competences,id',
             
         ]);
-        Diplome::create($request->all());
+        $diplome = Diplome::create($request->all());
         if ($request->has('competence_id')) {
             $diplome->competence()->attach($request->input('competence_id'));
         }
@@ -66,9 +66,18 @@ class DiplomeController extends Controller
             'Titre' => 'required|string|max:255',
             'Centre_formateur' => 'required|string|max:255',
             'Annee_obtention' => 'required|digits:4|integer|min:1900|max:' . (date('Y')),
+            'competence_id' => 'nullable|array',
+            'competence_id.*' => 'exists:competences,id',
         ]);
         $diplome = Diplome::findOrFail($id);
         $diplome->update($request->all());
+        if ($request->has('competence_id')) {
+            // La méthode sync() met à jour les entrées dans la table pivot (diplome_competence)
+            $diplome->competence()->sync($request->input('competence_id'));
+        } else {
+            // Si aucune compétence n'est sélectionnée, détacher toutes les compétences associées
+            $diplome->competence()->detach();
+        }
         return redirect()->route('diplomes.index')
             ->with('success', 'Diplôme mis à jour avec succès.');
         // return response()->json(['message' => 'Diplôme mis à jour avec succès.'], 200); utiliser pour API
@@ -77,7 +86,9 @@ class DiplomeController extends Controller
     function edit(string $id)
     {
         $diplome = Diplome::findOrFail($id);
-        return view('diplomes.edit', compact('diplome'));
+        $competences = Competence::all();
+        $diplome->competence->pluck('id')->toArray();
+        return view('diplomes.edit', compact('diplome', 'competences'));
     }
 
     /**
@@ -91,24 +102,5 @@ class DiplomeController extends Controller
             ->with('success', 'Diplôme supprimé avec succès.');
         // return response()->json(['message' => 'Diplôme supprimé avec succès.'], 200); utiliser pour API
     }
-
-    public function assignCompetencesForm($diplomeId)
-    {
-        $diplome = Diplome::findOrFail($diplomeId);
-        $competences = Competence::all();
-        return view('diplomes.assign_competences', compact('diplome', 'competences'));
-    }
-
-    public function assignCompetence(Request $request, $diplomeId, $competenceId)
-    {
-        $request->validate([
-            'niveau_maitrise' => 'required|string|max:255',
-        ]);
-        $diplome = Diplome::findOrFail($diplomeId);
-        $diplome->competence()->attach($competenceId, ['niveau_maitrise' => $request->input('niveau_maitrise')]);
-
-        return redirect()->route('diplomes.show', $diplomeId)
-            ->with('success', 'Compétence assignée avec succès.');
-        //return response()->json(['message' => 'Compétence assignée avec succès.'], 200);
-    }
+    
 }

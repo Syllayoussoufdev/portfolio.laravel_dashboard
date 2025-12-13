@@ -1,6 +1,7 @@
 @extends('layouts.app')
-      <main class="flex-shrink-0">
+@section('title', 'Edit Diploma / Certification')
 @section('content')
+      <main class="flex-shrink-0">
             <!-- Diplomes Section-->
             
             <section class="py-5">
@@ -25,11 +26,34 @@
                                     <label for="Centre_formateur" class="form-label">Centre_formateur</label>
                                     <input type="text" class="form-control" id="Centre_formateur" name="Centre_formateur" value="{{ $diplome->Centre_formateur }}" required>
                                 </div>
+                                <div class="mb-4">
+                                    <label for="competence_id" class="form-label">Associer des Compétences</label>
+                                    <div class="border p-3 rounded">
+                                        @foreach ($competences as $competence)
+                                            <div class="form-check">
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="checkbox" 
+                                                    name="competence_id[]" 
+                                                    value="{{ $competence->id }}" 
+                                                    id="competence-{{ $competence->id }}"
+                                                    {{-- Maintenir l'état coché en cas d'erreur de validation ou si déjà associé --}}
+                                                    {{ in_array($competence->id, old('competence_id', $diplome->competence->pluck('id')->toArray())) ? 'checked' : '' }}
+                                                >
+                                                <label class="form-check-label" for="competence-{{ $competence->id }}">
+                                                    {{ $competence->nom }} 
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        @error('competence_id') <div class="text-danger mt-2">{{ $message }}</div> @enderror    
+
+                                    </div>                                    
+                                </div>
                                 <button type="submit" class="btn btn-primary">Update Diplomes</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </section>
-            @endsection
+            </section>            
         </main>
+    @endsection

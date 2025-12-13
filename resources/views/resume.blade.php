@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Resume')
 
     @section('content')
         <main class="flex-shrink-0">

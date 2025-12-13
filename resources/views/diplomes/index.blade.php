@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+@section('title', 'Diplomes / Certifications')
+    @section('content')
       <main class="flex-shrink-0">
-        @section('content')
             <!-- Contact Section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -40,6 +40,5 @@
                     </div>
                 </div>
             </section>
-            @endsection
         </main>
-@endextends
+    @endsection
