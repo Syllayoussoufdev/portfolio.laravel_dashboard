@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.portfolio_master')
 @section('title', 'Competences')
     @section('content')
       <main class="flex-shrink-0">
@@ -25,7 +25,6 @@
                                             @empty
                                                 <span class="text-danger">Aucun diplôme associé.</span>
                                             @endforelse
-                                            <a href="{{ route('competences.assignDiplomesForm', $competence->id)}}" class="btn btn-secondary">Assignement de Diplome</a>
                                             <a href="{{ route('competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('competences.destroy', $competence->id) }}" method="POST" class="d-inline">
                                         @csrf

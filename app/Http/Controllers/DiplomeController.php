@@ -15,7 +15,7 @@ class DiplomeController extends Controller
     public function index()
     {
         $diplomes = Diplome::with('competence')->get();
-        return view('diplomes.index', compact('diplomes'));//-- IGNORE ---
+        return view('admin.diplomes.index', compact('diplomes'));//-- IGNORE ---
         //return response()->json($diplomes); utiliser pour API --- IGNORE ---
     }
     public function create()
@@ -53,7 +53,7 @@ class DiplomeController extends Controller
     public function show(string $id)
     {
         $diplome = Diplome::findOrFail($id);
-        return view('diplomes.show', compact('diplome'));
+        return view('admin.diplomes.show', compact('diplome'));
         // return response()->json($diplome); utiliser pour API
     }
 
@@ -88,7 +88,7 @@ class DiplomeController extends Controller
         $diplome = Diplome::findOrFail($id);
         $competences = Competence::all();
         $diplome->competence->pluck('id')->toArray();
-        return view('diplomes.edit', compact('diplome', 'competences'));
+        return view('admin.diplomes.edit', compact('diplome', 'competences'));
     }
 
     /**

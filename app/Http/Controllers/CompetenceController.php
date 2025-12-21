@@ -16,7 +16,7 @@ class CompetenceController extends Controller
     {
         //$competences = Competence::all();
         $competences= Competence::with('diplome')->get();
-        return view('competences.index', compact('competences'));
+        return view('admin.competences.index', compact('competences'));
         // return response()->json($competences); utiliser pour API
     }
     public function create()
