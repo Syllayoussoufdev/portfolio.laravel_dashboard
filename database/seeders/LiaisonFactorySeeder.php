@@ -26,22 +26,20 @@ class LiaisonFactorySeeder extends Seeder
         // 3. RÉACTIVER la vérification des clés étrangères
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        competence::factory()->count(20)->create(); // Ajout de 10 compétences
+        competence::factory()->count(10)->create(); // Ajout de 20 compétences
 
         // 2. Récupérer tous les IDs de Compétences (pour la liaison)
         // La méthode pluck('id') est très efficace pour récupérer une seule colonne
-        $idsCompetences = competence::all()->pluck('id')->toArray();// Récupère tous les IDs de compétences sous forme de tableau
+        $idsCompetences = competence::all()->pluck('id')->toArray();// Récupère tous les IDs des compétences quon vient de creer sous forme de tableau
         
-        // 3. Créer 40 Diplômes et les lier aux Compétences avec un niveau de maîtrise aléatoire
+        // 3. Créer 10 Diplômes et les lier aux Compétences avec un niveau de maîtrise aléatoire
         //each permet de parcourir chaque diplôme créé et use pour la liaison des variables externes
 
-        Diplome::factory()->count(10)->create()->each(function($diplome) use ($idsCompetences) {
+        Diplome::factory()->count(8)->create()->each(function($diplome) use ($idsCompetences) {
             // Mélanger les IDs de compétences pour une sélection aléatoire
             shuffle($idsCompetences);
-            // Attacher un nombre aléatoire de compétences (entre 1 et 5) à chaque diplôme avec un niveau de maîtrise aléatoire
-            $diplome->competence()->attach(array_slice($idsCompetences, 0, rand(1, 5)), [
-                'niveau_maitrise' => 'Niveau ' . rand(1, 10)
-            ]);
+            // Attacher un nombre aléatoire de compétences (entre 1 et 5) à chaque diplôme
+            $diplome->competence()->attach(array_slice($idsCompetences, 0, rand(1, 5)),);
         });
     }
 }

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competences', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('niveau');
-            $table->string('Type');
-            $table->integer('pourcentage');
-            $table->enum('category', ['professional', 'language']);
+            $table->string('email');
+            $table->string('sujet');
+            $table->text('message');
+            $table->boolean('lu')->default(false); // Pour savoir si tu as traité le message
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competences');
+        Schema::dropIfExists('contacts');
     }
 };

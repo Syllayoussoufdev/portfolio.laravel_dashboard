@@ -48,3 +48,4 @@ Route::get('/projets', [ProjetController::class, 'index'])->name('projets');
 Route::get('/diplomes', [DiplomeController::class, 'index'])->name('diplomes');
 Route::get('/competences', [CompetenceController::class, 'index'])->name('competences');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contact');
+Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');

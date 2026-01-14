@@ -9,8 +9,10 @@
                         <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Competences</span></h1>
                     </div>
                     <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-11 col-xl-9 col-xxl-8">                                                        
-                            <a href="{{ route('competences.create') }}" class="btn btn-primary">creer</a>    
+                        <div class="col-lg-11 col-xl-9 col-xxl-8"> 
+                            @auth                                                       
+                            <a href="{{ route('competences.create') }}" class="btn btn-primary">creer une compentence</a> 
+                            @endauth   
                             <!-- Competence Card 1-->
                             @foreach ($competences as $competence)
                             <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
@@ -25,12 +27,14 @@
                                             @empty
                                                 <span class="text-danger">Aucun diplôme associé.</span>
                                             @endforelse
-                                            <a href="{{ route('competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('competences.destroy', $competence->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                            @auth
+                                                 <a href="{{ route('competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
+                                                <form action="{{ route('competences.destroy', $competence->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            @endauth
                                         </div>
                                         <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." />
                                     </div>

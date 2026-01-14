@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competences', function (Blueprint $table) {
+        Schema::create('projets', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('niveau');
-            $table->string('Type');
-            $table->integer('pourcentage');
-            $table->enum('category', ['professional', 'language']);
+            $table->string('titre');
+            $table->string('image')->nullable(); // On stockera le chemin de l'image
+            $table->text('description');
+            $table->string('lien_github')->nullable();
+            $table->string('lien_demo')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competences');
+        Schema::dropIfExists('projets');
     }
 };

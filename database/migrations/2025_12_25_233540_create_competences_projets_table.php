@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diplome_competence', function (Blueprint $table) {
-            $table->id();
+        Schema::create('competence_projet', function (Blueprint $table) {
             
-            $table->foreignId('diplome_id')// Assure la contrainte de clé étrangère
-                ->constrained('diplomes')
+            // Utilise foreignId au lieu de foreign
+            $table->foreignId('competence_id')
+                ->constrained('competences') // Laravel devine tout seul qu'il pointe sur 'id'
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                        
+            $table->foreignId('projet_id')
+                ->constrained('projets')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId('competence_id')
-                ->constrained('competences') // Assure la contrainte de clé étrangère
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+
             $table->timestamps();
-            
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diplome_competence');
+        Schema::dropIfExists('competence_projet');
     }
 };

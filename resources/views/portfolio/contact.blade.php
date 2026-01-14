@@ -9,10 +9,31 @@
                     <div class="bg-light rounded-4 py-5 px-4 px-md-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                            <h1 class="fw-bolder">Get in touch</h1>
+                            <h1 class="fw-bolder">Me Contacter Directment</h1>
                             <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
                         </div>
+                        
                         <div class="row gx-5 justify-content-center">
+                            
+                            <div class="col-lg-4 col-xl-3 align-self-center">
+                                <!-- Contact information-->
+                                <div class="text-center text-lg-start">
+                                    <h4 class="fw-bolder mb-4">Contact info</h4>
+                                    <p class="mb-2">
+                                        <i class="bi bi-telephone-fill me-2"></i>
+                                        (+225) 05-94-56-49-93 /
+                                        (+225) 07-06-23-21-93
+                                    </p>
+                                    <p class="mb-2">
+                                        <i class="bi bi-envelope-fill me-2"></i>
+                                        youssoufs120@gmail.com 
+                                    </p>
+                                    <p class="mb-2">
+                                        <i class="bi bi-geo-alt-fill me-2"></i>
+                                        Bp- 128 , Abidjan, Côte d'Ivoire
+                                    </p>
+                                </div>
+                            </div>
                             <div class="col-lg-8 col-xl-6">
                                 <!-- * * * * * * * * * * * * * * *-->
                                 <!-- * * SB Forms Contact Form * *-->
@@ -68,7 +89,7 @@
                                     <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
                                 </form>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </section>

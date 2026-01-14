@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('Titre');
             $table->string('Centre_formateur');
-            $table->year('Annee_obtention');            
+            $table->year('Annee_obtention');
+            $table->string('Lieu_centre');
+            $table->string('niveau_diplome');
+            $table->string('Domaine_etude');
+            $table->string('Description');            
             $table->timestamps();
         });
     }

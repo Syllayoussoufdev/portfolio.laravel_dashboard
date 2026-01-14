@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\LiaisonFactorySeeder::class,
             // Vous pouvez laisser les autres vides, mais ne les appelez plus ici
         ]);
+        $this->command->info('LiaisonFactorySeeder executed successfully.');
         
         // Si vous avez un utilisateur Admin critique, appelez son Seeder ici aussi.
         // $this->call(UserSeeder::class);

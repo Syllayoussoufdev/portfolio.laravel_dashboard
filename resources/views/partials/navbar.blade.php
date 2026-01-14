@@ -6,11 +6,21 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li class="nav-item"><a class="nav-link" href={{ route('home') }}>Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('Resume') }}>Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href={{ route('Resume') }}>Resumer</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('projets') }}>Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('competences') }}>Competences</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('diplomes') }}>Diplomes / Certifications</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('contact') }}>Contact</a></li>
+                        @auth
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm me-3">Dashboard Administration</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-sm me-3">Conexion</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3">Inscription</a>
+                        @endauth
                         </ul>
                     </div>
                 </div>

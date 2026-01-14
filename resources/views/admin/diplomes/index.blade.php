@@ -10,8 +10,10 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <a href="{{ route('diplomes.create') }}" class="btn btn-primary">creer</a>                           
-                            <!-- Diploma Card 1-->
+                            @auth
+                                <a href="{{ route('diplomes.create') }}" class="btn btn-primary">creer</a>                           
+                            @endauth
+                                <!-- Diploma Card 1-->
                             @foreach ($diplomes as $diplome)
                             <div class="card mb-4">
                                 <div class="card-body">
@@ -27,12 +29,14 @@
                                         @endforelse
                                     </p>                                    
                                     <br>
-                                    <a href="{{ route('diplomes.edit', $diplome->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('diplomes.destroy', $diplome->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    @auth
+                                        <a href="{{ route('diplomes.edit', $diplome->id) }}" class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('diplomes.destroy', $diplome->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    @endauth
                                 </div>
                             </div>
                             @endforeach

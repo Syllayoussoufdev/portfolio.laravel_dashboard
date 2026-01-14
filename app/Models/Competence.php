@@ -10,11 +10,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Competence extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom', 'niveau', 'pourcentage'];
+    protected $fillable = ['nom', 'niveau', 'pourcentage', 'Type'];
    
     public function diplome(): BelongsToMany 
     {
-        return $this->belongsToMany(Diplome::class,'diplome_competence')
-        ->withPivot('niveau_maitrise')->withTimestamps();
+        return $this->belongsToMany(Diplome::class,'diplome_competence');
+    }
+    public function experience(): BelongsToMany 
+    {
+        return $this->belongsToMany(Experience::class,'experience_competence');
+    }
+    public function projet(): BelongsToMany 
+    {
+        return $this->belongsToMany(Projets::class,'projet_competence');
     }
 }

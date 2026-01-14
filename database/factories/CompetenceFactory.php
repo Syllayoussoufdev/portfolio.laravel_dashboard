@@ -26,6 +26,8 @@ class CompetenceFactory extends Factory
             'niveau' => $this->faker->numberBetween(1, 10),
             // Pourcentage de maîtrise entre 10 et 100
             'pourcentage' => $this->faker->numberBetween(10, 100),
+            // Type de compétence
+            'Type' => $this->faker->randomElement(['Techniques', 'Personnelles', 'Linguistiques', 'Informatiques']),
         ];
     }
 }

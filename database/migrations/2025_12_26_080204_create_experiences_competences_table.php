@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competences', function (Blueprint $table) {
+        Schema::create('experience_competence', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('niveau');
-            $table->string('Type');
-            $table->integer('pourcentage');
-            $table->enum('category', ['professional', 'language']);
+            $table->foreignId('experience_id')->constrained('experiences')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('competence_id')->constrained('competences')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competences');
+        Schema::dropIfExists('experience_competence');
     }
 };
