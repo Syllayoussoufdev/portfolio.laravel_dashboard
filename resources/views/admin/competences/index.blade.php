@@ -22,6 +22,8 @@
                                             <h2 class="fw-bolder">{{ $competence->nom }}</h2>
                                             <p>Niveau : {{ $competence->niveau }}.</p>
                                             <p>pourcentage : {{ $competence->pourcentage }}</p>
+                                            <p>type : {{ $competence->category }}</p>
+                                            <h5>Diplomes associés :</h5>
                                             @forelse ($competence->diplome as $diplome) 
                                                 <span class="badge bg-primary">{{ $diplome->Titre }} ({{ $diplome->Annee_obtention }})</span>
                                             @empty

@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\DiplomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\CompetenceController;      
 use App\Http\Controllers\ContactController;
-
-
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -34,12 +33,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/competences/{id}/edit', [CompetenceController::class, 'edit'])->name('competences.edit');
     Route::put('/competences/{id}', [CompetenceController::class, 'update'])->name('competences.update');
     Route::delete('/competences/{id}', [CompetenceController::class, 'destroy'])->name('competences.destroy');
+});
+// Ce groupe garantit que SEUL l'admin connecté accède à ces routes
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/diplomes/create', [DiplomeController::class, 'create'])->name('diplomes.create');
-    Route::post('/diplomes', [DiplomeController::class, 'store'])->name('diplomes.store');
-    Route::get('/diplomes/{id}/edit', [DiplomeController::class, 'edit'])->name('diplomes.edit');
-    Route::put('/diplomes/{id}', [DiplomeController::class, 'update'])->name('diplomes.update');
-    Route::delete('/diplomes/{id}', [DiplomeController::class, 'destroy'])->name('diplomes.destroy');
+    // Cette ligne unique crée les 7 routes pour le CRUD des expériences !
+    Route::resource('experiences', ExperienceController::class);
+    
+    // Tu feras la même chose pour diplômes plus tard
+   // Route::resource('diplomes', DiplomeController::class);
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
