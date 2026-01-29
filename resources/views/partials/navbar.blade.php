@@ -8,8 +8,13 @@
                             <li class="nav-item"><a class="nav-link" href={{ route('home') }}>Home</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('Resume') }}>Resumer</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('projets') }}>Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('competences') }}>Competences</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('diplomes') }}>Diplomes / Certifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href='#'>Blog</a></li>
+                            @auth
+                            <li class="nav-item"><a class="nav-link" href={{route('admin.Competences.index')}}>Competences</a></li>
+                            <li class="nav-item"><a class="nav-link" href={{ route('admin.diplomes.index') }}>Diplomes / Certifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href='#'>Experiences</a></li>
+                            <li class="nav-item"><a class="nav-link" href={{ route('admin.messages.index') }}>Messages</a></li>
+                            @endauth
                             <li class="nav-item"><a class="nav-link" href={{ route('contact') }}>Contact</a></li>
                         @auth
                             <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm me-3">Dashboard Administration</a>
@@ -19,7 +24,7 @@
                             </form>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary btn-sm me-3">Conexion</a>
-                            <a href="{{ route('register') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3">Inscription</a>
+                            <a href="{{ route('inscrire') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3">Inscription</a>
                         @endauth
                         </ul>
                     </div>

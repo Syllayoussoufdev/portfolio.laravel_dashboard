@@ -11,7 +11,7 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
-                            <form method="POST" action="{{ route('competences.update', $competence->id) }}">
+                            <form method="POST" action="{{ route('admin.competences.update', $competence->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">

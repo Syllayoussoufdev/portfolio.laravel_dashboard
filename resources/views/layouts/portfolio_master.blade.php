@@ -2,7 +2,6 @@
 <html lang="en">
     @include('partials.head')
     <body>
-        
     <!-- Inclure la barre de navigation (un partial) -->
     @include('partials.navbar')
 

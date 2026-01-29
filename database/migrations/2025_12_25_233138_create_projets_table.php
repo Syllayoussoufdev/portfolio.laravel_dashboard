@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('image')->nullable(); // On stockera le chemin de l'image
+            $table->string('image')->nullable(); 
             $table->text('description');
             $table->string('lien_github')->nullable();
             $table->string('lien_demo')->nullable();
             $table->timestamps();
+
         });
     }
 

@@ -1,53 +1,94 @@
 @extends('layouts.portfolio_master')
 @section('title', 'Projects')
 
-    @section('content')
+@section('content')
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-uppercase border-bottom d-inline-block pb-2">Mes Réalisations</h1>
+        <p class="text-muted mt-3">Solutions techniques, automatisation et développement sur-mesure.</p>
+    </div>
 
-        <main class="flex-shrink-0">
-            <!-- Projects Section-->
-            <section class="py-5">
-                <div class="container px-5 mb-5">
-                    <div class="text-center mb-5">
-                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
+    <div class="row g-4">
+        @forelse($projects as $project)
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm project-card">
+                <div class="card-header p-0 border-0 bg-primary" style="height: 5px;"></div>
+                
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="project-icon bg-light rounded p-3 text-primary">
+                            @if($project->category == 'Mobile')
+                                <i class="bi bi-phone"></i>
+                            @elseif($project->category == 'IA')
+                                <i class="bi bi-cpu"></i>
+                            @else
+                                <i class="bi bi-code-slash"></i>
+                            @endif
+                        </div>
+                        <span class="badge rounded-pill bg-light text-dark border">{{ $project->category }}</span>
                     </div>
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <!-- Project Card 1-->
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="p-5">
-                                            <h2 class="fw-bolder">Project Name 1</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
-                                        </div>
-                                        <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Project Card 2-->
-                            <div class="card overflow-hidden shadow rounded-4 border-0">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="p-5">
-                                            <h2 class="fw-bolder">Project Name 2</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
-                                        </div>
-                                        <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." />
-                                    </div>
-                                </div>
-                            </div>
+
+                    <h4 class="card-title fw-bold mb-3">{{ $project->titre }}</h4>
+                    
+                    <p class="card-text text-muted mb-4">
+                        {{ Str::limit($project->description, 120) }}
+                    </p>
+
+                    <div class="mb-4">
+                        <small class="text-uppercase fw-semibold text-primary opacity-75" style="font-size: 0.75rem;">Technologies :</small>
+                        <div class="d-flex flex-wrap gap-2 mt-1">
+                            {{-- Exemple si tu stockes tes tags en format texte séparé par virgule --}}
+                            @foreach(explode(',', $project->tags ?? 'Laravel,Bootstrap,MySQL') as $tag)
+                                <span class="badge bg-soft-primary">{{ trim($tag) }}</span>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Call to action section-->
-            <section class="py-5 bg-gradient-primary-to-secondary text-white">
-                <div class="container px-5 my-5">
-                    <div class="text-center">
-                        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
-                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contact me</a>
+
+                <div class="card-footer bg-white border-0 p-4 pt-0">
+                    <div class="d-flex gap-2">
+                        @if($project->link_live)
+                            <a href="{{ $project->link_live }}" target="_blank" class="btn btn-primary btn-sm flex-grow-1">
+                                <i class="bi bi-eye"></i> Démo
+                            </a>
+                        @endif
+                        <a href="{{ route('projects.show', $project->id) }}" class="btn btn-outline-dark btn-sm flex-grow-1">
+                            Détails
+                        </a>
                     </div>
                 </div>
-            </section>
-        </main>
-    @endsection
+            </div>
+        </div>
+        @empty
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">Aucun projet à afficher pour le moment. 🚀</p>
+        </div>
+        @endforelse
+    </div>
+</div>
+
+<style>
+    /* Styles personnalisés pour compenser l'absence d'images */
+    .project-card {
+        transition: transform 0.3s ease, shadow 0.3s ease;
+    }
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    .project-icon {
+        font-size: 1.5rem;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bg-soft-primary {
+        background-color: #e7f1ff;
+        color: #0d6efd;
+    }
+    /* Ajout des icônes Bootstrap si pas déjà présentes */
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css");
+</style>
+@endsection

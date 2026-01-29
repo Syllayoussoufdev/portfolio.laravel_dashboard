@@ -29,4 +29,9 @@ class ContactController extends Controller
         // Rediriger avec un message de succès
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès !');
     }
+    public function voir_messages()
+    {
+        $messages = Contact::all();
+        return view('admin.messages.index', compact('messages'));
+    }
 }

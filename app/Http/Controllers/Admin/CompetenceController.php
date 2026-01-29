@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Competence;
 use App\Models\Diplome;
@@ -22,7 +23,7 @@ class CompetenceController extends Controller
     public function create()
     {
         $diplomes = Diplome::all();
-        return view('competences.create', compact('diplomes'));
+        return view('admin.competences.create', compact('diplomes'));
     }
 
     /**
@@ -54,13 +55,13 @@ class CompetenceController extends Controller
     public function show(string $id)
     {
         $id = Competence::findOrFail($id);
-        return view('competences.show', compact('competence'));
+        return view('admin.competences.show', compact('competence'));
     }
     public function edit(string $id)
     {
         $competence = Competence::findOrFail($id);
         $diplomes = Diplome::all();
-        return view('competences.edit', compact('competence', 'diplomes'));
+        return view('admin.competences.edit', compact('competence', 'diplomes'));
     }
 
     /**
@@ -116,6 +117,6 @@ class CompetenceController extends Controller
     {
         $competence = Competence::findOrFail($id);
         $diplomes = Diplome::all();
-        return view('competences.assign_diplomes', compact('competence', 'diplomes'));
+        return view('admin.competences.assign_diplomes', compact('competence', 'diplomes'));
     }
 }

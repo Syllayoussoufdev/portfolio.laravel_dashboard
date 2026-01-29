@@ -11,7 +11,7 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
-                            <form method="POST" action="{{ route('competences.store') }}">
+                            <form method="POST" action="{{ route('admin.Competences.store') }}">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="nom" class="form-label">Competence Name</label>

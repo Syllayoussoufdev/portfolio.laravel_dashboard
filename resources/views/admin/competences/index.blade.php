@@ -11,7 +11,7 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8"> 
                             @auth                                                       
-                            <a href="{{ route('competences.create') }}" class="btn btn-primary">creer une compentence</a> 
+                            <a href="{{ route('admin.Competences.create') }}" class="btn btn-primary">creer une compentence</a> 
                             @endauth   
                             <!-- Competence Card 1-->
                             @foreach ($competences as $competence)
@@ -30,8 +30,8 @@
                                                 <span class="text-danger">Aucun diplôme associé.</span>
                                             @endforelse
                                             @auth
-                                                 <a href="{{ route('competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
-                                                <form action="{{ route('competences.destroy', $competence->id) }}" method="POST" class="d-inline">
+                                                 <a href="{{ route('admin.Competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
+                                                <form action="{{ route('admin.Competences.destroy', $competence->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
