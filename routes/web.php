@@ -37,7 +37,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Cette ligne unique crée les 7 routes pour le CRUD des expériences !
     Route::resource('experiences', ExperienceController::class);
     Route::resource('/messages', MessagesController::class);
-    Route::resource('projets', ProjetController::class);
+     // Cette ligne unique crée les 7 routes pour le CRUD des projets !
+    Route::resource('projects', ProjetController::class);
     
     // Tu feras la même chose pour diplômes plus tard
     Route::resource('diplomes', DiplomeController::class);

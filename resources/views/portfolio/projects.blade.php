@@ -9,6 +9,13 @@
     </div>
 
     <div class="row g-4">
+        @auth         
+        <div class="col-12 text-end mb-3">
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-success">
+                <i class="bi bi-plus-lg"></i> Ajouter un Projet
+            </a>
+        </div>
+        @endauth
         @forelse($projects as $project)
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 border-0 shadow-sm project-card">
@@ -37,10 +44,11 @@
                     <div class="mb-4">
                         <small class="text-uppercase fw-semibold text-primary opacity-75" style="font-size: 0.75rem;">Technologies :</small>
                         <div class="d-flex flex-wrap gap-2 mt-1">
-                            {{-- Exemple si tu stockes tes tags en format texte séparé par virgule --}}
-                            @foreach(explode(',', $project->tags ?? 'Laravel,Bootstrap,MySQL') as $tag)
-                                <span class="badge bg-soft-primary">{{ trim($tag) }}</span>
-                            @endforeach
+                            @forelse ($project->competence as $competence) 
+                                <span class="badge bg-primary">{{ $competence->nom }}</span>
+                            @empty
+                                <span class="badge bg-soft-primary">Laravel,Bootstrap,MySQL</span>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -55,6 +63,18 @@
                         <a href="{{ route('projects.show', $project->id) }}" class="btn btn-outline-dark btn-sm flex-grow-1">
                             Détails
                         </a>
+                    @auth
+                        <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning btn-sm flex-grow-1">
+                            <i class="bi bi-pencil-square"></i> Éditer
+                        </a>
+                        <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="flex-grow-1">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm w-100" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?');">
+                                <i class="bi bi-trash"></i> Supprimer
+                            </button>
+                        </form>
+                    @endauth
                     </div>
                 </div>
             </div>

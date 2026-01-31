@@ -22,6 +22,6 @@ class Competence extends Model
     }
     public function projet(): BelongsToMany 
     {
-        return $this->belongsToMany(Projets::class,'projet_competence');
+        return $this->belongsToMany(Projet::class,'competence_projet');
     }
 }

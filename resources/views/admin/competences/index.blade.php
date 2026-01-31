@@ -25,9 +25,9 @@
                                             <p>type : {{ $competence->category }}</p>
                                             <h5>Diplomes associés :</h5>
                                             @forelse ($competence->diplome as $diplome) 
-                                                <span class="badge bg-primary">{{ $diplome->Titre }} ({{ $diplome->Annee_obtention }})</span>
+                                                <span class="badge bg-soft-primary">{{ $diplome->Titre }} ({{ $diplome->Annee_obtention }})</span>
                                             @empty
-                                                <span class="text-danger">Aucun diplôme associé.</span>
+                                                <span class="badge bg-soft-primary">Aucun diplôme associé.</span>
                                             @endforelse
                                             @auth
                                                  <a href="{{ route('admin.Competences.edit', $competence->id) }}" class="btn btn-primary">Edit</a>
