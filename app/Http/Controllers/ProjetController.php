@@ -22,20 +22,33 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
+        //@dd( $request->all());
         $request->validate([
-            'Titre' => 'required|string|max:255',
-            'Description' => 'required|string',
-            'Image' => 'nullable|image|max:2048',
-            'Lien_Github' => 'nullable|url',
-            'Lien_Demo' => 'nullable|url',
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2Mo
+            'slug' => 'nullable|string|max:255',
+            'statut' => 'nullable|string|max:255',
+            'lien_github' => 'nullable|url',
+            'lien_demo' => 'nullable|url',
             'competence_id' => 'nullable|array',
             'competence_id.*' => 'exists:competences,id',
         ]);
-        $project = Projet::create($request->all());
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            // On stocke l'image dans le dossier 'public/projets'
+        // store() retourne le chemin : "projets/nom_aleatoire.jpg"
+        $path = $request->file('image')->store('projets', 'public');
+        
+        // On remplace la valeur dans le tableau de données par le chemin
+        $data['image'] = $path;
+        }
+
+        $project = Projet::create($data);
         if ($request->has('competence_id')) {
             $project->competence()->attach($request->input('competence_id'));
         }
-        return redirect()->route('projects.index')
+        return redirect()->route('projets')
             ->with('success', 'Projet créé avec succès.');
     }
 
@@ -51,6 +64,7 @@ class ProjetController extends Controller
     public function show(string $id)
     {
         $project = Projet::with('competence')->findOrFail($id);
+        
         return view('portfolio.project_detail', compact('project'));
     }
 
@@ -62,7 +76,9 @@ class ProjetController extends Controller
         $request->validate([
             'Titre' => 'required|string|max:255',
             'Description' => 'required|string',
-            'Image' => 'nullable|image|max:2048',
+            'slug' => 'nullable|string|max:255',
+            'category' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:2048',
             'Lien_Github' => 'nullable|url',
             'Lien_Demo' => 'nullable|url',
             'competence_id' => 'nullable|array',
@@ -93,7 +109,7 @@ class ProjetController extends Controller
         $project = Projet::findOrFail($id);
         $project->competence()->detach();
         $project->delete();
-        return redirect()->route('projects.index')
+        return redirect()->route('projets')
             ->with('success', 'Projet supprimé avec succès.');
     }
 }

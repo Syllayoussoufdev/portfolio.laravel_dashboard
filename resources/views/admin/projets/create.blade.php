@@ -9,27 +9,59 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form method="POST" action="{{ route('admin.projects.store') }}">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="titre" class="form-label">Project Title</label>
+                                <label for="titre" class="form-label">Titre du Projet :</label>
                                 <input type="text" class="form-control" id="titre" name="titre" required>
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                                <label for="slug" class="form-label">Slug du Projet :</label>
+                                <input type="text" class="form-control" id="slug" name="slug" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description :</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image du Projet :</label>
+                                <input type="file" name="image" id="image" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="category" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="category" name="category" required>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="Web">Web</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="IA">IA</option>
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label for="link_live" class="form-label">Live Link</label>
-                                <input type="url" class="form-control" id="link_live" name="link_live">
+                                <label for="statut" class="form-label">Statut du Projet :</label>
+                                <select class="form-control" id="statut" name="statut">
+                                    <option value="En cours">En cours</option>
+                                    <option value="Terminé">Terminé</option>
+                                    <option value="Publié">Publié</option>
+                                </select>
                             </div>
-                            
+                            <div class="mb-3">
+                                <label for="lien_demo" class="form-label">liens du projet : </label>
+                                <input type="url" class="form-control" id="lien_demo" name="lien_demo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lien_github" class="form-label">liens du Github : </label>
+                                <input type="url" class="form-control" id="lien_github" name="lien_github">
+                            </div>
                             <div class="mb-4">
-                                <label class="form-label fw-bold">Technologies Used</label>
+                                <label class="form-label fw-bold">Technologies Utilise et Skill developpe :</label>
                                 <div class="border p-3 rounded">
                                     @foreach ($competences as $competence)
                                         <div class="form-check">

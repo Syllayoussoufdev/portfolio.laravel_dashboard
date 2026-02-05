@@ -44,10 +44,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('diplomes', DiplomeController::class);
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('/', 'portfolio.Home')->name('home');
+//Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/resumes', [ResumeController::class, 'index'])->name('Resume');
 Route::get('/projets', [ProjetController::class, 'index'])->name('projets');
-Route::get('/projects/{id}', [ProjetController::class, 'show'])->name('projects.show');
+Route::get('/projects/{slug}', [ProjetController::class, 'show'])->name('projects.show');
 //Route::get('/diplomes', [Diplome::class, 'index'])->name('diplomes');
 //Route::get('/competences', [CompetenceController::class, 'index'])->name('competences');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contact');

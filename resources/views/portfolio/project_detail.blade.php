@@ -5,27 +5,38 @@
     <div class="text-center mb-5">
         <h1 class="fw-bold text-uppercase border-bottom d-inline-block pb-2">{{ $project->titre }}</h1>
         <p class="text-muted mt-3">{{ $project->category }} Project Details</p>
+        <p>Statut : {{ $project->statut }}</p>
     </div>
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">                    
-                    <img src=" {{ $project->image }}" alt="" class=" ">
+                    <img src="{{ asset('storage/' . $project->image) }}" 
+                        class="card-img-top" 
+                        alt="{{ $project->title }}"
+                        onerror="this.src='https://placehold.co/600x400?text=Pas+d'image'">
                     <h4 class="fw-bold mb-3">Description</h4>
                     <p class="text-muted mb-4">{{ $project->description }}</p>  
                     <h5 class="fw-bold mb-3">Technologies Utilisées</h5>
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         @forelse ($project->competence as $competence) 
-                            <span class="badge bg-primary">{{ $competence->Titre }}</span>
+                            <span class="badge bg-primary">{{ $competence->nom }}</span>
                         @empty
                             <span class="badge bg-soft-primary"></span>
                         @endforelse
                     </div>
-                    @if($project->link_live)  
+                <div class="d-flex">
+                    @if($project->lien_demo)  
                         <a href="{{ $project->link_live }}" target="_blank" class="btn btn-primary">
                             <i class="bi bi-eye"></i> Voir la Démo
+                        </a>            
+                    @endif
+                    @if($project->lien_github)  
+                        <a href="{{ $project->lien_github }}" target="_blank" class="btn btn-dark ms-2">
+                            <i class="bi bi-github"></i> Voir le Code Source
                         </a>
                     @endif
+
                     <a href="{{ route('projets') }}" class="btn btn-outline-secondary ms-2">
                         <i class="bi bi-arrow-left"></i> Retour aux Projets
                     </a>

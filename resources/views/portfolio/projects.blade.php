@@ -33,9 +33,13 @@
                             @endif
                         </div>
                         <span class="badge rounded-pill bg-light text-dark border">{{ $project->category }}</span>
+                        
                     </div>
 
                     <h4 class="card-title fw-bold mb-3">{{ $project->titre }}</h4>
+                    <h6>
+                        <small class="text-muted">statut : "{{ $project->statut }}"</small>
+                    </h6>
                     
                     <p class="card-text text-muted mb-4">
                         {{ Str::limit($project->description, 120) }}

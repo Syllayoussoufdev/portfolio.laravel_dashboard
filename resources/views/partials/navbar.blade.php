@@ -7,8 +7,8 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li class="nav-item"><a class="nav-link" href={{ route('home') }}>Home</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('Resume') }}>Resumer</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('projets') }}>Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href='#'>Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href={{ route('projets') }}>Mes Projets</a></li>
+                            <li class="nav-item"><a class="nav-link" href='#'>Blog Perso</a></li>
                             @auth
                             <li class="nav-item"><a class="nav-link" href={{route('admin.Competences.index')}}>Competences</a></li>
                             <li class="nav-item"><a class="nav-link" href={{ route('admin.diplomes.index') }}>Diplomes / Certifications</a></li>
@@ -23,8 +23,8 @@
                                 <button type="submit" class="btn btn-danger btn-sm">Logout</button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary btn-sm me-3">Conexion</a>
-                            <a href="{{ route('inscrire') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3">Inscription</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-sm me-3"></a>
+                            <a href="{{ route('inscrire') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3"></a>
                         @endauth
                         </ul>
                     </div>

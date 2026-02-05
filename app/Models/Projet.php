@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Projet extends Model
 {
     use HasFactory;
-    protected $fillable = ['titre', 'description', 'image', 'lien_github', 'lien_demo'];
+    protected $fillable = ['titre', 'description','slug', 'statut', 'category', 'image', 'lien_github', 'lien_demo'];
 
     function competence(): BelongsToMany 
     {

@@ -19,6 +19,10 @@
                                 <!-- Contact information-->
                                 <div class="text-center text-lg-start">
                                     <h4 class="fw-bolder mb-4">Contact info</h4>
+                                    <div class="mb-3">
+                                        <i class="bi bi-telephone"></i> 
+                                        <a class="text-muted" href="tel:+2250594564993">+225 0594564993</a>
+                                    </div>
                                     <p class="mb-2">
                                         <i class="bi bi-telephone-fill me-2"></i>
                                         (+225) 05-94-56-49-93 /
@@ -85,6 +89,29 @@
                 </div>
             </section>
         </main>
+        <!-- About Section-->
+            <section class="bg-light py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-xxl-8">
+                            <div class="text-center my-5">
+                                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">A propos de moi</span></h2>
+                                <p class="lead fw-light mb-4"> Je suis Sylla Youssouf Developpeur Web Laravel</p>
+                                <p class="text-muted">Développeur Fullstack (Junior) avec Deux ans d'experiences qui m'ont permis d'avoir, une approche orientée résultats. 
+                                    J'allie la flexibilité du travail indépendant à une maîtrise rigoureuse des dernières technologies pour 
+                                    livrer des produits qui marquent les esprits et un faculter d'adaptation rapide.</p>
+                                <div class="d-flex justify-content-center fs-2 gap-4">                                    
+                                    <a class="text-gradient" href="https://www.linkedin.com/in/sylla-youssouf-devweb/"><i class="bi bi-linkedin"></i></a>
+                                    <a class="text-gradient" href="https://github.com/Syllayoussoufdev"><i class="bi bi-github"></i></a>
+                                    <a class="text-gradient" href="https://www.facebook.com/profile.php?id=61575957370011"><i class="bi bi-facebook"></i></a>
+                                    <a class="text-gradient" href="https://wa.me/2250594564993"><i class="bi bi-whatsapp"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         <!-- Footer-->
 @endsection
 
