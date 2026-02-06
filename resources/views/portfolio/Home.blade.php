@@ -155,6 +155,31 @@
                                 <p class="text-muted">Développeur Fullstack (Junior) avec Deux ans d'experiences qui m'ont permis d'avoir, une approche orientée résultats. 
                                     J'allie la flexibilité du travail indépendant à une maîtrise rigoureuse des dernières technologies pour 
                                     livrer des produits qui marquent les esprits et un faculter d'adaptation rapide.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br>
+
+            <section id="resume" class=" container px-5 pb-5"> 
+                @include('partials._resume') 
+            </section>
+            <section id="portfolio" class=" py-5 bg-light"> 
+                @include('partials._projects') 
+            </section>
+            <section id="contact"> 
+                @include('partials._contact_form') 
+            </section>
+            
+            <!-- About Section-->
+            <section class="bg-light py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-xxl-8">
+                            <div class="text-center my-5">
+                                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Mes reseaux :</span></h2>                                
                                 <div class="d-flex justify-content-center fs-2 gap-4">                                    
                                     <a class="text-gradient" href="https://www.linkedin.com/in/sylla-youssouf-devweb/"><i class="bi bi-linkedin"></i></a>
                                     <a class="text-gradient" href="https://github.com/Syllayoussoufdev"><i class="bi bi-github"></i></a>

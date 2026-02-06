@@ -44,7 +44,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('diplomes', DiplomeController::class);
 });
 
-Route::view('/', 'portfolio.Home')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+//Route::view('/', 'portfolio.Home')->name('home');
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/resumes', [ResumeController::class, 'index'])->name('Resume');
 Route::get('/projets', [ProjetController::class, 'index'])->name('projets');
