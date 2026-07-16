@@ -55,7 +55,7 @@
      style="background: linear-gradient(135deg, #1a2845 0%, #16213e 100%);">
     
     <!-- Largeur ajustée à max-w-lg pour un aspect plus équilibré -->
-    <div class="w-1/2 max-w-lg bg-white rounded-2xl shadow-2xl p-8 border border-white border-opacity-20">
+    <div class="w-1/2 justify-center  max-w-lg bg-white rounded-2xl shadow-2xl p-8 border border-white border-opacity-20">
         
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-2xl mb-4">

@@ -35,50 +35,6 @@
         </div>
         </div>
     </section>
-    {{-- <section id="accueil" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-image">
-                    <!-- Placeholder pour votre photo - remplacez par votre vraie photo -->
-                    <div class="profile-photo">
-                    <img src="{{ asset('assets/images/profil3.png') }}" alt="Photo de profil" />
-                    </div>
-                </div>
-                <div class="hero-text">
-                    <h1 class="hero-title">Sylla Youssouf</h1>
-                    <h2 class="hero-subtitle">Développeur Web & Mobile Junior</h2>
-                    <p class="hero-description">
-                        "Je conçois des applications web modernes et responsives avec des technologies Laravel, React.js et Flutter (Vue et utilisé dans des projets). Etant developeur junior je suis ouvert a l'utilisation d'autre technologies."
-                         vous pourez me contacter pour toute opportunité de collaboration ou projet passionnant. , mon <a href="https://slydev-portfolio.firebaseapp.com/" class="btn btn-secondary">portfolio</a>
-                    </p>
-                    <div class="hero-buttons">
-                        <a target="_blank" href="https://drive.google.com/file/d/1QcazYWZxhZDElVoAtrI3aunBUd6ih-Qs/view?usp=sharing" class="btn btn-primary" download aria-label="Télécharger le CV de Sylla Youssouf">
-                            <i class="fas fa-download"></i> Télécharger mon CV
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <i class="fas fa-envelope"></i> Me contacter
-                        </a>
-                    </div>
-                     <!-- Skills quick badges -->
-                    <div class="quick-skills" aria-hidden="false">
-                        <span class="skill-badge">Laravel(PHP)</span>
-                        <span class="skill-badge">Django (Python)</span>    
-                        <span class="skill-badge">BD (MySQL, MongoDB)</span>
-                        <span class="skill-badge">Frontend (React Js; Bootstrap)</span>                        
-                        <span class="skill-badge">Mobile(Flutter)</span>
-                        <span class="skill-badge">No-code (WordPress, Vibe-coding)</span>
-                    </div>
-      </div>
-                </div>
-            </div>
-        </div>
-        <!-- Flèche de scroll -->
-        <div class="scroll-indicator">
-            <a href="#apropos">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </section> --}}
 
     <!-- Section À propos -->
     <section id="apropos" class="about">
@@ -150,132 +106,67 @@
         <div class="container">
             <h2 class="section-title">Mes compétences</h2>
             <div class="skills-grid">
+
                 <!-- Frontend Skills -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-palette"></i> Frontend</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>HTML5 / CSS3</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>tailwind.css / Bootstrap</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>JavaScript / React.js</span>
-                                <span>55%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="55%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Integration de templates</span>
-                                <span>60%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="60%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Platorme Responsive</span>
-                                <span>40%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="40%"></div>
-                            </div>
-                        </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-palette"></i> Frontend</h3>
+                            <div class="skill-list">
+                            @foreach ($owner->competences as $competence)          
+                                @if ($competence->type === 'Front-end')
+                                        <div class="skill-item">
+                                            <div class="skill-info">
+                                                <span>{{ $competence->nom_competence }}</span>
+                                                <span>{{ $competence->niveau }}</span>
+                                                <span>{{ $competence->pourcentage }}</span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="skill-progress" data-width="{{ $competence->pourcentage }}%"></div>
+                                            </div>
+                                        </div>
+                                @endif                          
+                            @endforeach
+                            </div>              
                     </div>
-                </div>
 
                 <!-- Backend Skills -->
                 <div class="skill-category">
                     <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>PHP (Poo, MVC, CRUD)</span>
-                                <span>80%</span>
+                            <div class="skill-list">
+                                @foreach ($owner->competences as $competence)          
+                                    @if ($competence->type === 'Back-end')
+                                            <div class="skill-item">
+                                                <div class="skill-info">
+                                                    <span>{{ $competence->nom_competence }}</span>
+                                                    <span>{{ $competence->niveau }}</span>
+                                                    <span>{{ $competence->pourcentage }}</span>
+                                                </div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-progress" data-width="{{ $competence->pourcentage }}%"></div>
+                                                </div>
+                                            </div>
+                                    @endif                          
+                                @endforeach
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Laravel</span>
-                                <span>75%</span>
-                            </div>                            
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>SQL</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Mobile & Outils -->
                 <div class="skill-category">
-                    <h3><i class="fas fa-mobile-alt"></i> Mobile & Outils</h3>
+                    <h3><i class="fas fa-mobile-alt"></i> Autre</h3>
                     <div class="skill-list">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Flutter</span>
-                                <span>50%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Git/GitHub</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>WordPress</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Documentation</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
+                        @foreach ($owner->competences as $competence)          
+                            @if ($competence->type === 'Autre')
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <span>{{ $competence->nom_competence }}</span>
+                                            <span>{{ $competence->niveau }}</span>
+                                            <span>{{ $competence->pourcentage }}</span>
+                                        </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" data-width="{{ $competence->pourcentage }}%"></div>
+                                        </div>
+                                    </div>
+                            @endif                          
+                        @endforeach
                     </div>
                 </div>
             </div>
