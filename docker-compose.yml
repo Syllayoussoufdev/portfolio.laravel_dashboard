@@ -7,6 +7,7 @@ services:
       - "5173:5173" # Ajoute cette ligne pour exposer le port de Vite
     volumes:
       - .:/var/www/html
+      - /var/www/html/vendor  # <- Ajout de cette ligne
     networks:
       - laravel-network
 
@@ -30,9 +31,9 @@ services:
       PMA_PORT: 3306
       UPLOAD_LIMIT: 300M
     ports:
-      - "8081:80"
+      - "8081:80"  #Ton phpMyAdmin sera sur http://localhost:8081
     networks:
-      - laravel-network      
+      - laravel-network
 
 networks:
   laravel-network:
