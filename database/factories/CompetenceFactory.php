@@ -21,19 +21,19 @@ class CompetenceFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(), // Associe chaque compétence à un utilisateur si non spécifié
             // Simuler des noms de compétences aléatoires
-            'nom_competence' => fake()->word(),
+            'nom_competence' => $this->faker->word(),
             // Niveau de compétence entre 1 et 10
-            'niveau' => fake()->numberBetween(1, 10),
+            'niveau' => $this->faker->numberBetween(1, 10),
             // Pourcentage de maîtrise entre 10 et 100
-            'pourcentage' => fake()->numberBetween(10, 100),
+            'pourcentage' => $this->faker->numberBetween(10, 100),
             // Catégorie de compétence
-            'category' => fake()->randomElement(['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']),
+            'category' => $this->faker->randomElement(['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']),
             // Type de compétence
-            'type' => fake()->randomElement(['Back-end', 'Front-end', 'Full-stack', 'Mobile', 'Autre']),
-            // Description aléatoire    
-            'description' => fake()->sentence(),
+            'type' => $this->faker->randomElement(['Back-end', 'Front-end', 'Full-stack', 'Mobile', 'Autre']),
+            // Description aléatoire
+            'description' => $this->faker->sentence(),
             // Icone aléatoire (exemple de classes FontAwesome)
-            'icon' => fake()->word(),
+            'icon' => $this->faker->word(),
         ];
     }
 }

@@ -6,8 +6,8 @@ services:
       - "8080:80" # Ton site sera sur http://localhost:8080
       - "5173:5173" # Ajoute cette ligne pour exposer le port de Vite
     volumes:
-      - .:/var/www/html
-      - /var/www/html/vendor  # <- Ajout de cette ligne
+      - C:/Projets/vitrine/portfolio:/var/www/html
+
     networks:
       - laravel-network
 

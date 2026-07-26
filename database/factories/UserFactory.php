@@ -25,18 +25,18 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->safeEmail(),
-            'titre_professionnel' => fake()->jobTitle(),
-            'biographie' => fake()->paragraph(),
-            'a_propos' => fake()->text(),
-            'slug' => fake()->unique()->slug(),
-            'photo_profil' => fake()->imageUrl(200, 200, 'people'),
-            'cv' => fake()->filePath(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->safeEmail(),
+            'titre_professionnel' => $this->faker->jobTitle(),
+            'biographie' => $this->faker->paragraph(),
+            'a_propos' => $this->faker->text(),
+            'slug' => $this->faker->unique()->slug(),
+            'photo_profil' => $this->faker->imageUrl(200, 200, 'people'),
+            'cv' => $this->faker->filePath(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => fake()->randomElement(['user', 'admin', 'visiteur']), // Valeur par défaut pour le champ 'role'
+            'role' => $this->faker->randomElement(['user', 'admin', 'visiteur']), // Valeur par défaut pour le champ 'role'
         ];
     }
 

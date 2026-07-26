@@ -23,10 +23,9 @@ class UserSeeder extends Seeder
             'slug' => 'deveweb_laraveel_junior', // Slug personnalisé pour cet utilisateur
             'biographie' => 'Passionné de développement web avec une expérience dans Laravel.',
             'photo_profil' => 'assets/images/profil3.png',
-            'a_propos' => 'Jeune diplômé d\'un BTS en Informatique Développeur d\'Applications, j\'ai travaillé sur plusieurs projets en PHP, Laravel, MySQL, HTML, CSS, JavaScript et Bootstrap. J\'ai également une initiation en React.js et Flutter/Dart. Passionné par l\'innovation digitale et les outils no-code, j\'ai aussi une expérience en support technique, formation et documentation. Je suis à la recherche d\'une opportunité pour mettre en pratique mes compétences et continuer à apprendre dans un environnement stimulant.',          
+            'a_propos' => 'Jeune diplômé d\'un BTS en Informatique Développeur d\'Applications, j\'ai travaillé sur plusieurs projets en PHP, Laravel, MySQL, HTML, CSS, JavaScript et Bootstrap. J\'ai également une initiation en React.js et Flutter/Dart. Passionné par l\'innovation digitale et les outils no-code, j\'ai aussi une expérience en support technique, formation et documentation. Je suis à la recherche d\'une opportunité pour mettre en pratique mes compétences et continuer à apprendre dans un environnement stimulant.',
             'cv' => 'https://drive.google.com/file/d/1PcR6cYPK84EICsSl4zzhgcmeJ7sJbkBd/view?usp=drive_link',
             'role' => 'user',
-            'a_propos' => 'Jeune diplômé d\'un BTS en Informatique Développeur d\'Applications, j\'ai travaillé sur plusieurs projets en PHP, Laravel, MySQL, HTML, CSS, JavaScript et Bootstrap. J\'ai également une initiation en React.js et Flutter/Dart. Passionné par l\'innovation digitale et les outils no-code, j\'ai aussi une expérience en support technique, formation et documentation. Je suis à la recherche d\'une opportunité pour mettre en pratique mes compétences et continuer à apprendre dans un environnement stimulant.',
         ]);
 
         // Optionnel : Créer un utilisateur spécifique (ex: Admin)

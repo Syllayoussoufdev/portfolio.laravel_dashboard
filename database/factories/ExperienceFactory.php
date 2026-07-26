@@ -21,17 +21,17 @@ class ExperienceFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(), // Associe chaque expérience à un utilisateur
-            'poste' => fake()->jobTitle(),
-            'entreprise' => fake()->company(),
-            'Adresse_entreprise' => fake()->address(),
-            'periode' => fake()->date(),
-            'type_contrat' => fake()->randomElement(['CDD', 'CDI', 'Stage', 'Freelance']),
-            'secteur_activite' => fake()->word(),
-            'realisation_principale' => fake()->paragraph(),
+            'poste' => $this->faker->jobTitle(),
+            'entreprise' =>  $this->faker->company(),
+            'Adresse_entreprise' => $this->faker->address(),
+            'periode' => $this->faker->date(),
+            'type_contrat' => $this->faker->randomElement(['CDD', 'CDI', 'Stage', 'Freelance']),
+            'secteur_activite' => $this->faker->word(),
+            'realisation_principale' => $this->faker->paragraph(),
             // 'equipe_geree',
-            'projet_principal' => fake()->sentence(),
-            'resultats_obtenus' => fake()->paragraph(),
-            'description' => fake()->paragraph()
+            'projet_principal' => $this->faker->sentence(),
+            'resultats_obtenus' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraph()
         ];
     }
 }

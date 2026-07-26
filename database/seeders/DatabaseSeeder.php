@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-//use App\Models\User;
+use App\Models\User;
 use App\Models\Diplome;
 use App\Models\Competence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
